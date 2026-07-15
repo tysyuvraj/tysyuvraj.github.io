@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuvraj Singh — AI &amp; Robotics Researcher</title>
+<meta name="description" content="Yuvraj Singh — graduate researcher at The University of Osaka (Ishiguro Lab) building real-time multimodal supervisors for autonomous robots. Anticipatory intent prediction, GR00T policy control, cross-embodiment HRI.">
+<meta name="author" content="Yuvraj Singh">
+<meta property="og:title" content="Yuvraj Singh — AI &amp; Robotics Researcher">
+<meta property="og:description" content="Real-time multimodal supervision for autonomous robots — anticipatory intent prediction validated across two embodiments.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230D1014'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%231E56E0'/%3E%3Cpath d='M4 16 h5 M23 16 h5' stroke='%23E08A1E' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F6F8;
+    --panel: #FFFFFF;
+    --panel-2: #FBFBFC;
+    --ink: #0D1014;
+    --ink-soft: #4E555F;
+    --ink-faint: #858D99;
+    --line: #E4E7EC;
+    --line-strong: #D3D8DF;
+    --accent: #1E56E0;
+    --accent-ink: #1748C0;
+    --accent-wash: #EAF0FE;
+    --signal: #D97A1E;
+    --ok: #2E9E68;
+    --stop: #D64B4B;
+    --switch: #D99A1E;
+    --graphite: #0F1319;
+    --radius: 4px;
+    --radius-lg: 10px;
+    --shadow: 0 1px 2px rgba(13,16,20,.04), 0 8px 28px -18px rgba(13,16,20,.22);
+    --shadow-lg: 0 2px 6px rgba(13,16,20,.05), 0 30px 60px -34px rgba(13,16,20,.34);
+    --maxw: 1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0B0D11;
+      --panel: #14171D;
+      --panel-2: #171B22;
+      --ink: #EDF0F4;
+      --ink-soft: #A8B0BC;
+      --ink-faint: #6E7784;
+      --line: #252A32;
+      --line-strong: #333A44;
+      --accent: #6E93FF;
+      --accent-ink: #93AEFF;
+      --accent-wash: #17203A;
+      --signal: #E8983B;
+      --ok: #43BE83;
+      --stop: #F0716F;
+      --switch: #E8B24A;
+      --graphite: #05070A;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.7);
+      --shadow-lg: 0 2px 6px rgba(0,0,0,.5), 0 34px 64px -30px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #F5F6F8; --panel: #FFFFFF; --panel-2: #FBFBFC; --ink: #0D1014;
+    --ink-soft: #4E555F; --ink-faint: #858D99; --line: #E4E7EC; --line-strong: #D3D8DF;
+    --accent: #1E56E0; --accent-ink: #1748C0; --accent-wash: #EAF0FE; --signal: #D97A1E;
+    --ok: #2E9E68; --stop: #D64B4B; --switch: #D99A1E; --graphite: #0F1319;
+    --shadow: 0 1px 2px rgba(13,16,20,.04), 0 8px 28px -18px rgba(13,16,20,.22);
+    --shadow-lg: 0 2px 6px rgba(13,16,20,.05), 0 30px 60px -34px rgba(13,16,20,.34);
+  }
+  :root[data-theme="dark"] {
+    --paper: #0B0D11; --panel: #14171D; --panel-2: #171B22; --ink: #EDF0F4;
+    --ink-soft: #A8B0BC; --ink-faint: #6E7784; --line: #252A32; --line-strong: #333A44;
+    --accent: #6E93FF; --accent-ink: #93AEFF; --accent-wash: #17203A; --signal: #E8983B;
+    --ok: #43BE83; --stop: #F0716F; --switch: #E8B24A; --graphite: #05070A;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.7);
+    --shadow-lg: 0 2px 6px rgba(0,0,0,.5), 0 34px 64px -30px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .display { font-family: 'Archivo', sans-serif; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px; height: 1.5px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--paper) 82%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .brand { display: flex; align-items: center; gap: 11px; font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+  .brand .glyph {
+    width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0;
+    background: var(--graphite); position: relative;
+  }
+  .brand .glyph::before { content:""; position:absolute; inset:0; margin:auto; width:8px; height:8px; border-radius:50%; background:var(--accent); }
+  .brand .glyph::after { content:""; position:absolute; top:50%; left:4px; right:4px; height:2px; transform:translateY(-50%); background:var(--signal); clip-path: polygon(0 0,22% 0,22% 100%,0 100%,0 0, 78% 0, 100% 0, 100% 100%, 78% 100%, 78% 0); }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a { font-size: 13.5px; color: var(--ink-soft); transition: color .15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 13px; font-weight: 500; color: #fff !important;
+    background: var(--accent); padding: 8px 15px; border-radius: var(--radius);
+    transition: background .15s, transform .15s;
+  }
+  .nav-cta:hover { background: var(--accent-ink); transform: translateY(-1px); }
+  .nav-toggle { display: none; }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 74px 0 26px; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 52px; align-items: center;
+  }
+  .avail {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+    color: var(--ink-soft); border: 1px solid var(--line-strong);
+    padding: 5px 11px; border-radius: 100px; margin-bottom: 22px; background: var(--panel);
+  }
+  .avail .live { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); position: relative; }
+  .avail .live::after { content:""; position:absolute; inset:-4px; border-radius:50%; border:1.5px solid var(--ok); opacity:.5; animation: ping 2.4s ease-out infinite; }
+  @keyframes ping { 0%{transform:scale(.6);opacity:.6} 80%,100%{transform:scale(1.9);opacity:0} }
+
+  h1.hero-title {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: clamp(33px, 4.6vw, 52px); line-height: 1.04;
+    letter-spacing: -0.025em; text-wrap: balance; margin-bottom: 22px;
+  }
+  h1 .hl { color: var(--accent); }
+  .hero-sub { font-size: 17px; color: var(--ink-soft); max-width: 46ch; margin-bottom: 30px; }
+  .hero-sub b { color: var(--ink); font-weight: 600; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 500; padding: 11px 18px; border-radius: var(--radius);
+    border: 1px solid var(--line-strong); background: var(--panel); color: var(--ink);
+    transition: border-color .15s, transform .15s, background .15s;
+  }
+  .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .btn.primary { background: var(--graphite); color: #fff; border-color: var(--graphite); }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn svg { width: 15px; height: 15px; }
+
+  .stat-strip { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+  .stat { padding-right: 26px; margin-right: 26px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .stat .n { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; display: block; }
+  .stat .l { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-faint); text-transform: uppercase; }
+
+  /* ---------- HUD readout ---------- */
+  .hud {
+    background: var(--graphite); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg); overflow: hidden; color: #E8ECF2;
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .hud-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 11px 15px; border-bottom: 1px solid rgba(255,255,255,.08);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9aa6b6;
+  }
+  .hud-bar .rec { display: inline-flex; align-items: center; gap: 7px; color: #E8ECF2; letter-spacing: .08em; }
+  .hud-bar .rec .d { width: 8px; height: 8px; border-radius: 50%; background: var(--stop); animation: rec 1.6s steps(2) infinite; }
+  @keyframes rec { 50% { opacity: .25; } }
+  .hud-canvas-wrap { position: relative; height: 116px; background:
+    linear-gradient(180deg, rgba(30,86,224,.10), transparent 70%); }
+  #trace { display: block; width: 100%; height: 100%; }
+  .hud-lead {
+    position: absolute; top: 12px; right: 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    color: var(--signal); letter-spacing: .04em;
+    border: 1px solid rgba(217,122,30,.4); border-radius: 3px; padding: 3px 7px;
+    background: rgba(217,122,30,.10);
+  }
+  .hud-body { padding: 15px 17px 17px; }
+  .hud-title { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: #7f8b9c; margin-bottom: 12px; }
+  .hud-rows { display: grid; grid-template-columns: auto 1fr; gap: 7px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
+  .hud-rows .k { color: #7f8b9c; }
+  .hud-rows .v { color: #E8ECF2; text-align: right; }
+  .hud-rows .v.accent { color: #7FA6FF; }
+  .conf-track { grid-column: 1 / -1; margin-top: 3px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.09); overflow: hidden; }
+  .conf-fill { height: 100%; width: 94%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), #7FA6FF); }
+  .hud-foot {
+    display: flex; justify-content: space-between; margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #7f8b9c;
+  }
+
+  /* ---------- pipeline strip ---------- */
+  .pipe { padding: 30px 0 8px; }
+  .pipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .pipe-card {
+    border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius);
+    padding: 20px 20px 22px; position: relative; overflow: hidden;
+  }
+  .pipe-card .step { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: .06em; }
+  .pipe-card h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; margin: 8px 0 6px; letter-spacing: -0.01em; }
+  .pipe-card p { font-size: 13.5px; color: var(--ink-soft); }
+  .pipe-card .arrow { position: absolute; top: 22px; right: 18px; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace; }
+
+  /* ---------- sections ---------- */
+  section.block { padding: 60px 0; border-top: 1px solid var(--line); }
+  .sec-head { margin-bottom: 30px; }
+  .sec-head h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 27px; letter-spacing: -0.02em; margin-top: 8px; }
+  .sec-head p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 62ch; }
+
+  /* project */
+  .proj {
+    border: 1px solid var(--line-strong); border-radius: var(--radius-lg);
+    background: var(--panel); box-shadow: var(--shadow); overflow: hidden;
+  }
+  .proj-top { padding: 26px 28px 4px; }
+  .proj-flag { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--signal); margin-bottom: 12px; }
+  .proj-flag .d { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); }
+  .proj h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 12px; max-width: 30ch; }
+  .proj h3 a:hover { color: var(--accent); }
+  .proj-desc { font-size: 15px; color: var(--ink-soft); max-width: 68ch; }
+  .proj-metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 24px 0 0;
+  }
+  .proj-metrics .m { padding: 18px 22px; border-right: 1px solid var(--line); }
+  .proj-metrics .m:last-child { border-right: none; }
+  .proj-metrics .m .n { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em; display: block; }
+  .proj-metrics .m .l { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .04em; color: var(--ink-faint); text-transform: uppercase; margin-top: 2px; }
+  .proj-body { padding: 24px 28px 26px; }
+  .proj-body h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+  .contrib { list-style: none; columns: 2; column-gap: 30px; }
+  .contrib li { font-size: 13.5px; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 9px; break-inside: avoid; }
+  .contrib li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 22px 0 20px; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-soft); background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 9px; }
+  .proj-links { display: flex; gap: 20px; }
+  .proj-links a { font-size: 13.5px; font-weight: 500; color: var(--ink); display: inline-flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; transition: color .15s, border-color .15s; }
+  .proj-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* results table */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-lg); background: var(--panel); box-shadow: var(--shadow); }
+  table.results { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 560px; }
+  table.results th, table.results td { text-align: left; padding: 15px 22px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.results tr:last-child td { border-bottom: none; }
+  table.results th { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; background: var(--panel-2); }
+  table.results td:first-child { font-family: 'Archivo', sans-serif; font-weight: 600; color: var(--ink); white-space: nowrap; width: 1%; padding-right: 34px; }
+  table.results td:last-child { color: var(--ink-soft); }
+  table.results .mono { color: var(--ink); font-weight: 500; }
+
+  /* engineering highlights */
+  .eng-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .eng {
+    border: 1px solid var(--line); border-top: 2.5px solid var(--accent);
+    background: var(--panel); border-radius: var(--radius); padding: 22px 22px 24px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .eng:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .eng .idx { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-faint); }
+  .eng h4 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; margin: 10px 0 8px; letter-spacing: -0.01em; }
+  .eng p { font-size: 13.5px; color: var(--ink-soft); }
+
+  /* additional work */
+  .mini { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius-lg); padding: 24px 26px; }
+  .mini h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .mini .st { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .06em; color: var(--ok); float: right; }
+  .mini p { font-size: 14px; color: var(--ink-soft); max-width: 70ch; }
+  .mini .datachips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .datachip { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-soft); background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 11px; }
+  .datachip b { color: var(--ink); font-weight: 600; }
+
+  /* limitations */
+  .limit { border: 1px solid var(--line); border-left: 3px solid var(--signal); background: var(--panel); border-radius: var(--radius); padding: 24px 26px; }
+  .limit p { font-size: 14.5px; color: var(--ink-soft); }
+  .limit p + p { margin-top: 13px; }
+  .limit b { color: var(--ink); font-weight: 600; }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 44px; }
+  .about-text p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 15px; max-width: 60ch; }
+  .about-text b { color: var(--ink); font-weight: 600; }
+  .facts { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--panel); overflow: hidden; align-self: start; }
+  .facts .f { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .facts .f:last-child { border-bottom: none; }
+  .facts .f .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+  .facts .f .v { font-size: 14px; color: var(--ink); margin-top: 2px; }
+
+  /* figure band */
+  .figband { display: grid; grid-template-columns: repeat(2, minmax(0, 400px)); justify-content: center; gap: 18px; }
+
+  /* research-contribution callout */
+  .callout { border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--accent-wash); border-radius: var(--radius); padding: 24px 28px; }
+  .callout p { font-size: 15.5px; color: var(--ink-soft); }
+  .callout p + p { margin-top: 12px; }
+  .callout b { color: var(--ink); font-weight: 600; }
+  .mini + .mini { margin-top: 16px; }
+  .lab-fig { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); box-shadow: var(--shadow); }
+  .lab-fig img { display: block; width: 100%; height: 460px; object-fit: cover; object-position: center; }
+  .lab-fig figcaption { padding: 14px 20px; font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
+  .lab-fig figcaption b { color: var(--ink); font-weight: 600; font-family: 'Archivo', sans-serif; }
+
+  /* about photo rail */
+  .about-side { display: flex; flex-direction: column; }
+  .about-photo { flex: 1 1 auto; min-height: 260px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 16px; }
+  .about-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+  .about-side .facts { flex: 0 0 auto; align-self: stretch; }
+
+  /* footer */
+  footer { border-top: 1px solid var(--line); padding: 46px 0 56px; background: var(--panel-2); }
+  .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 28px; }
+  .foot-cta h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .foot-cta p { color: var(--ink-soft); font-size: 15px; margin-bottom: 18px; }
+  .foot-links { display: flex; gap: 20px; }
+  .foot-links a { font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 7px; transition: color .15s; }
+  .foot-links a:hover { color: var(--accent); }
+  .foot-meta { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-faint); text-align: right; }
+
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 38px; }
+    .hud { max-width: 440px; }
+    .about-grid { grid-template-columns: 1fr; gap: 26px; }
+  }
+  @media (max-width: 720px) {
+    .pipe-grid { grid-template-columns: 1fr; }
+    .eng-grid { grid-template-columns: 1fr; }
+    .figband { grid-template-columns: 1fr; }
+    .pipe-card .arrow { display: none; }
+    .proj-metrics { grid-template-columns: repeat(2, 1fr); }
+    .proj-metrics .m:nth-child(2) { border-right: none; }
+    .proj-metrics .m:nth-child(1), .proj-metrics .m:nth-child(2) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .hero { padding: 48px 0 20px; }
+    .contrib { columns: 1; }
+    .stat-strip { gap: 14px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; scroll-behavior: auto; }
+    .btn:hover, .nav-cta:hover, .eng:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="glyph"></span>Yuvraj Singh</a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#results">Results</a>
+      <a href="#about">About</a>
+      <a href="mailto:ml.yuvrajsingh@gmail.com" class="nav-cta">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="avail"><span class="live"></span>Open to research &amp; robotics-ML roles · from Sept 2026</div>
+      <h1 class="hero-title display">Teaching autonomous robots <span class="hl">when to stop, switch, and continue.</span></h1>
+      <p class="hero-sub">
+        I'm a graduate researcher at <b>The University of Osaka's Ishiguro Laboratory</b>
+        building real-time multimodal supervisors for learned robot policies — systems that
+        watch, listen, and predict human intent <b>1–2 seconds ahead</b> to intervene at the
+        right moment. Previously 3 years as a software engineer at Accenture.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:ml.yuvrajsingh@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email me
+        </a>
+        <a class="btn" href="https://github.com/tysyuvraj" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://huggingface.co/tysyuvraj" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="7"/><path d="M8.5 9h.01M15.5 9h.01M8.5 13c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8"/></svg>
+          Models &amp; Datasets
+        </a>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><span class="n">462<span style="font-size:14px">ms</span></span><span class="l">Median latency</span></div>
+        <div class="stat"><span class="n">4.1<span style="font-size:14px">s</span></span><span class="l">Anticipation lead</span></div>
+        <div class="stat"><span class="n">2</span><span class="l">Robot embodiments</span></div>
+        <div class="stat"><span class="n">~0<span style="font-size:14px">%</span></span><span class="l">Parse failure</span></div>
+      </div>
+    </div>
+
+    <!-- Authentic HUD readout — mirrors the system's live operator monitor -->
+    <div class="hud" role="img" aria-label="Live intent-prediction monitor showing predicted intent 'approach', phase 'transporting', target 'green can', confidence 0.94, with a 4.1-second anticipation lead.">
+      <div class="hud-bar">
+        <span class="rec"><span class="d"></span>LIVE MONITOR</span>
+        <span>QWEN3-OMNI · vLLM</span>
+      </div>
+      <div class="hud-canvas-wrap">
+        <canvas id="trace" width="760" height="232"></canvas>
+        <span class="hud-lead">lead +4.1s</span>
+      </div>
+      <div class="hud-body">
+        <div class="hud-title">FUTURE INTENT PREDICTION · #0942</div>
+        <div class="hud-rows">
+          <span class="k">intent</span><span class="v accent">approach</span>
+          <span class="k">phase</span><span class="v">transporting</span>
+          <span class="k">target</span><span class="v">green monster can</span>
+          <span class="k">confidence</span><span class="v">0.94</span>
+          <div class="conf-track"><div class="conf-fill"></div></div>
+        </div>
+        <div class="hud-foot">
+          <span>ROUTER · running → hold?</span>
+          <span>Qwen 1.9Hz · GR00T 30Hz</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- pipeline -->
+<section class="pipe wrap">
+  <div class="pipe-grid">
+    <div class="pipe-card">
+      <span class="arrow mono">→</span>
+      <div class="step mono">01 / PERCEIVE</div>
+      <h3 class="display">Watch &amp; listen</h3>
+      <p>One model (Qwen3-Omni) fuses camera and microphone every prediction tick — no separate VAD, ASR, or vision encoder.</p>
+    </div>
+    <div class="pipe-card">
+      <span class="arrow mono">→</span>
+      <div class="step mono">02 / PREDICT</div>
+      <h3 class="display">Anticipate intent</h3>
+      <p>Short-horizon prediction of what the human will do next, plus focused yes/no visual checks for grounding and completion.</p>
+    </div>
+    <div class="pipe-card">
+      <div class="step mono">03 / INTERVENE</div>
+      <h3 class="display">Stop · switch · continue</h3>
+      <p>A software policy router — not the model — decides when to interrupt, redirect, or let the running GR00T policy finish.</p>
+    </div>
+  </div>
+</section>
+
+<!-- system in action -->
+<section class="block wrap">
+  <div class="sec-head">
+    <span class="eyebrow mono">Real hardware</span>
+    <h2 class="display">The System in Action</h2>
+    <p>Not a simulation demo — the supervisor and both policies were built and tested on physical robots.</p>
+  </div>
+  <div class="figband">
+    <figure class="lab-fig">
+      <img src="teleop.jpg" alt="Yuvraj teleoperating the Unitree G1 humanoid to collect demonstrations" loading="lazy" width="843" height="1500">
+      <figcaption><b>Unitree G1 — teleoperation.</b> Collecting dual-arm demonstrations for GR00T fine-tuning.</figcaption>
+    </figure>
+    <figure class="lab-fig">
+      <img src="so-101.jpg" alt="The SO-101 follower arm set up for the cotton-ball pick-and-place task" loading="lazy" width="1050" height="1400">
+      <figcaption><b>SO-101 arm.</b> The pink/yellow cotton-ball pick-and-place workspace.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- flagship work -->
+<section class="block wrap" id="work">
+  <div class="sec-head">
+    <span class="eyebrow mono">Flagship research</span>
+    <h2 class="display">Selected Work</h2>
+  </div>
+
+  <div class="proj">
+    <div class="proj-top">
+      <div class="proj-flag mono"><span class="d"></span>Master's thesis · ongoing</div>
+      <h3 class="display"><a href="https://github.com/tysyuvraj/qwen-hri-intent" target="_blank" rel="noopener">Anticipatory Multimodal Intent Prediction for Real-Time HRI</a></h3>
+      <p class="proj-desc">
+        A real-time supervisor for autonomous robot manipulation. It watches video and audio,
+        predicts human intent 1–2 seconds ahead, and decides when a running NVIDIA GR00T policy
+        should stop, switch tasks, or continue. A single unmodified "brain" was validated across
+        two structurally different robots and three independently trained policies — coupled to
+        each through a fixed 10-method contract.
+      </p>
+    </div>
+    <div class="proj-metrics">
+      <div class="m"><span class="n">462ms</span><span class="l mono">median · 617ms p95</span></div>
+      <div class="m"><span class="n">5,561</span><span class="l mono">predictions logged</span></div>
+      <div class="m"><span class="n">~0%</span><span class="l mono">parse failure (post-fix)</span></div>
+      <div class="m"><span class="n">3 → 1</span><span class="l mono">policies · one brain</span></div>
+    </div>
+    <div class="proj-body">
+      <h4 class="mono">My contributions</h4>
+      <ul class="contrib">
+        <li>Designed the full architecture — brain, policy router, robot bridge</li>
+        <li>Built the real-time multimodal inference pipeline</li>
+        <li>Collected teleoperation demonstration data on both robots</li>
+        <li>Fine-tuned GR00T independently on both embodiments</li>
+        <li>Built the hardware abstraction layer and G1 robot bridge</li>
+        <li>Diagnosed and fixed a production vLLM inference bug</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Qwen3-Omni</span>
+        <span class="tag">NVIDIA GR00T (N1.6 / N1.7)</span>
+        <span class="tag">vLLM</span>
+        <span class="tag">LeRobot</span>
+        <span class="tag">Isaac Sim</span>
+        <span class="tag">ZMQ</span>
+        <span class="tag">SO-101 · Unitree G1</span>
+        <span class="tag">Python</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/tysyuvraj/qwen-hri-intent" target="_blank" rel="noopener">View code ↗</a>
+        <a href="https://huggingface.co/tysyuvraj" target="_blank" rel="noopener">Models &amp; datasets ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- research contribution -->
+<section class="block wrap">
+  <div class="sec-head">
+    <span class="eyebrow mono">Why it's novel</span>
+    <h2 class="display">Research Contribution</h2>
+  </div>
+  <div class="callout">
+    <p>
+      The contribution is in the <b>composition</b>. A general-purpose multimodal model is used
+      <b>zero-shot</b> — with no perception-side training — as an external supervisor over an
+      <b>independently trained, unmodified</b> robot policy. The two are never jointly trained; the
+      brain reasons, the policy acts, and a thin software contract couples them.
+    </p>
+    <p>
+      Instead of a binary stop/go, the supervisor performs <b>graded intervention</b> — hedging
+      (slowing the robot) on an ambiguous cue before committing to a stop — and the same supervisor
+      was validated across <b>two structurally different robots and three separately trained
+      policies</b> without changing a line of its code.
+    </p>
+  </div>
+</section>
+
+<!-- results -->
+<section class="block wrap" id="results">
+  <div class="sec-head">
+    <span class="eyebrow mono">Measured, not claimed</span>
+    <h2 class="display">Key Results</h2>
+    <p>Every figure below comes from the system's own structured logs across live hardware sessions on both robots.</p>
+  </div>
+  <div class="table-scroll">
+    <table class="results">
+      <thead><tr><th>Metric</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Inference latency</td>
+          <td><span class="mono">462ms</span> median / <span class="mono">617ms</span> p95 across <span class="mono">5,561</span> logged predictions</td>
+        </tr>
+        <tr>
+          <td>Anticipation lead</td>
+          <td>The predictive signal precedes the executed stop by a median of <span class="mono">4.1s</span> (SO-101) — direct evidence for the 3–5s prediction horizon</td>
+        </tr>
+        <tr>
+          <td>Reliability fix</td>
+          <td>Diagnosed a <span class="mono">~50%</span> parse-failure rate to a known vLLM/Qwen3 issue; the workaround reduced failures to <span class="mono">~0%</span></td>
+        </tr>
+        <tr>
+          <td>Cross-embodiment generalization</td>
+          <td>Identical brain ported unmodified across SO-101 and Unitree G1, and across three separately trained policies, via a fixed 10-method contract</td>
+        </tr>
+        <tr>
+          <td>GR00T fine-tuning</td>
+          <td>SO-101 (N1.6): <span class="mono">300</span> episodes / <span class="mono">58,853</span> frames &nbsp;·&nbsp; G1 (N1.7): <span class="mono">104</span> episodes / <span class="mono">18,190</span> frames, final loss <span class="mono">0.008</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- engineering highlights -->
+<section class="block wrap">
+  <div class="sec-head">
+    <span class="eyebrow mono">How it's built</span>
+    <h2 class="display">Engineering Highlights</h2>
+  </div>
+  <div class="eng-grid">
+    <div class="eng">
+      <span class="idx mono">H1</span>
+      <h4 class="display">Unified multimodal perception</h4>
+      <p>One model (Qwen3-Omni, via vLLM) handles video and audio jointly, replacing what would otherwise be separate VAD, ASR, and vision-encoder components.</p>
+    </div>
+    <div class="eng">
+      <span class="idx mono">H2</span>
+      <h4 class="display">Diagnosing a production bug</h4>
+      <p>Traced a ~50% output parse-failure rate to a known vLLM/Qwen3 compatibility issue and validated a fix across the full deployment — from guesswork to a reproducible root cause.</p>
+    </div>
+    <div class="eng">
+      <span class="idx mono">H3</span>
+      <h4 class="display">Model-behavior-driven design</h4>
+      <p>The model is unreliable at structured fields but reliable at focused yes/no questions. All control logic lives in software that never trusts the model's raw decision directly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- additional work -->
+<section class="block wrap">
+  <div class="sec-head">
+    <span class="eyebrow mono">Also</span>
+    <h2 class="display">Additional Work</h2>
+  </div>
+  <div class="mini">
+    <span class="st mono">COMPLETE</span>
+    <h3 class="display">GR00T Fine-Tuning — SO-101 &amp; Unitree G1</h3>
+    <p>
+      Independently fine-tuned NVIDIA GR00T on two robot embodiments using self-collected
+      teleoperation data — a SO-101 single arm and a Unitree G1 dual-arm humanoid — and
+      published the models and datasets openly.
+    </p>
+    <div class="datachips">
+      <span class="datachip">SO-101 · <b>300 eps</b> / 58,853 frames</span>
+      <span class="datachip">G1 · <b>104 eps</b> / 18,190 frames</span>
+      <span class="datachip">final loss <b>0.008</b></span>
+      <span class="datachip">Hugging Face · <b>models + datasets</b></span>
+    </div>
+  </div>
+  <div class="mini">
+    <span class="st mono">OPEN SOURCE</span>
+    <h3 class="display">Evaluation &amp; Analysis Tooling</h3>
+    <p>
+      Built the offline analysis suite that turns raw session logs into evidence — so every claim on
+      this page traces back to data. It measures the anticipation lead time, replays logged
+      predictions through the router to sweep decision thresholds counterfactually, and reports
+      tail-latency and parse-failure rates across both robots.
+    </p>
+    <div class="datachips">
+      <span class="datachip"><b>Anticipation</b> lead-time metric</span>
+      <span class="datachip"><b>Counterfactual</b> router replay</span>
+      <span class="datachip"><b>Tail-latency</b> + reliability report</span>
+    </div>
+  </div>
+</section>
+
+<!-- limitations -->
+<section class="block wrap">
+  <div class="sec-head">
+    <span class="eyebrow mono">Stated honestly</span>
+    <h2 class="display">Known Limitations</h2>
+  </div>
+  <div class="limit">
+    <p><b>Open-vocabulary understanding, closed-vocabulary execution.</b> The robot only performs its trained skills; adding one requires new demonstration data.</p>
+    <p>The model is reliable at focused yes/no visual checks but weak at fine-grained grounding such as color naming — the perception design works around this rather than solving it.</p>
+    <p>The anticipatory speech path trades selectivity for speed: it can fragment compound commands and needs confirmation gates that add back some latency.</p>
+    <p><b>Server-hosted, not on-device.</b> The supervisor runs a 30B multimodal model on a separate GPU server, so latency depends on the network link and it is not an embedded solution — a deliberate trade of deployment footprint for zero-shot generality with no perception-side training.</p>
+    <p><b>Bounded by the policy it watches.</b> The monitor reliably detects when a task stalls or fails, but it cannot repair a weak motor policy — an under-trained skill is correctly reported as incomplete rather than fixed. Overall task success still depends on the underlying policy's competence.</p>
+  </div>
+</section>
+
+<!-- about -->
+<section class="block wrap" id="about">
+  <div class="sec-head">
+    <span class="eyebrow mono">Background</span>
+    <h2 class="display">About</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a graduate researcher at <b>The University of Osaka's Ishiguro Laboratory</b>, on a
+        university-recommended MEXT scholarship, graduating September 2026. My research focuses on
+        multimodal AI that can supervise and intervene in real-time robot behavior — predicting
+        human intent before it's explicit, and deciding when a robot should keep going versus stop.
+      </p>
+      <p>
+        Before graduate school I spent <b>3 years as a software engineer at Accenture</b>, working on
+        large-scale enterprise systems, data pipelines, and quality engineering. That background
+        shapes how I approach research: I care as much about a system being reliable and reproducible
+        as I do about it being novel — most of this project's value is in diagnosing real failure
+        modes and engineering around them.
+      </p>
+      <p>
+        Earlier, I co-authored a peer-reviewed publication on image-to-image translation with CycleGANs
+        (ICINC 2021). Outside research, I'm continuing to study Japanese and occasionally run informal
+        STEM workshops for children.
+      </p>
+      <p>
+        I'm most interested in work at the seam between large multimodal models and real robots —
+        perception, real-time inference, and the control logic that turns a model's output into safe,
+        useful action. I'm looking for <b>research or robotics-ML roles</b> where I can keep building
+        systems that run on real hardware, not just benchmarks.
+      </p>
+    </div>
+    <div class="about-side">
+    <div class="about-photo"><img src="headshot.jpg" alt="Portrait of Yuvraj Singh" loading="lazy" width="681" height="1000"></div>
+    <div class="facts">
+      <div class="f"><div class="k mono">Location</div><div class="v">Toyonaka, Osaka · Japan</div></div>
+      <div class="f"><div class="k mono">Education</div><div class="v">Master's · The University of Osaka · 2026</div></div>
+      <div class="f"><div class="k mono">Focus</div><div class="v">Multimodal AI · Robot learning · HRI</div></div>
+      <div class="f"><div class="k mono">Stack</div><div class="v">Python · PyTorch · vLLM · GR00T · LeRobot</div></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-cta">
+      <h3 class="display">Let's talk.</h3>
+      <p>Open to research and robotics-ML roles. The fastest way to reach me is email.</p>
+      <div class="foot-links">
+        <a href="mailto:ml.yuvrajsingh@gmail.com">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email
+        </a>
+        <a href="https://github.com/tysyuvraj" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>GitHub
+        </a>
+        <a href="https://huggingface.co/tysyuvraj" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="7"/><path d="M8.5 13c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8"/></svg>Hugging Face
+        </a>
+      </div>
+    </div>
+    <div class="foot-meta mono">
+      Yuvraj Singh — 2026<br>
+      The University of Osaka · Ishiguro Lab
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Anticipatory signal trace — a smooth confidence curve that rises toward a
+  // predicted event, with a "now" line and a highlighted lead segment ahead.
+  (function () {
+    var c = document.getElementById('trace');
+    if (!c) return;
+    var ctx = c.getContext('2d');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var accent = '#4E7BEE', signal = '#E08A1E';
+
+    function draw(t) {
+      var W = c.width, H = c.height;
+      ctx.clearRect(0, 0, W, H);
+      var nowX = W * 0.62;
+
+      // baseline grid
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+      ctx.lineWidth = 1;
+      for (var gy = 1; gy < 4; gy++) {
+        var y = (H / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+
+      // the confidence signal
+      function sig(x) {
+        var p = x / W;
+        var base = 0.5 + 0.16 * Math.sin(p * 7 + t * 0.6) + 0.08 * Math.sin(p * 17 - t);
+        // ramp up toward a predicted event just past "now"
+        var ramp = 1 / (1 + Math.exp(-(p - 0.55) * 16));
+        return base * (1 - ramp) + (0.9 + 0.03 * Math.sin(t * 2)) * ramp;
+      }
+
+      // filled area under the pre-now portion
+      ctx.beginPath();
+      ctx.moveTo(0, H);
+      for (var x = 0; x <= nowX; x += 4) ctx.lineTo(x, H - sig(x) * H * 0.82 - 8);
+      ctx.lineTo(nowX, H);
+      ctx.closePath();
+      var grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, 'rgba(78,123,238,0.28)');
+      grad.addColorStop(1, 'rgba(78,123,238,0)');
+      ctx.fillStyle = grad; ctx.fill();
+
+      // solid line (history)
+      ctx.beginPath();
+      for (var x2 = 0; x2 <= nowX; x2 += 3) {
+        var yy = H - sig(x2) * H * 0.82 - 8;
+        x2 === 0 ? ctx.moveTo(x2, yy) : ctx.lineTo(x2, yy);
+      }
+      ctx.strokeStyle = accent; ctx.lineWidth = 2.4; ctx.stroke();
+
+      // predicted segment (dashed, signal color) — the anticipatory part
+      ctx.beginPath();
+      ctx.setLineDash([5, 5]);
+      for (var x3 = nowX; x3 <= W; x3 += 3) {
+        var yy3 = H - sig(x3) * H * 0.82 - 8;
+        x3 === nowX ? ctx.moveTo(x3, yy3) : ctx.lineTo(x3, yy3);
+      }
+      ctx.strokeStyle = signal; ctx.lineWidth = 2.2; ctx.stroke();
+      ctx.setLineDash([]);
+
+      // "now" line
+      ctx.beginPath(); ctx.moveTo(nowX, 6); ctx.lineTo(nowX, H - 4);
+      ctx.strokeStyle = 'rgba(255,255,255,0.22)'; ctx.lineWidth = 1; ctx.stroke();
+
+      // moving marker at now
+      var my = H - sig(nowX) * H * 0.82 - 8;
+      ctx.beginPath(); ctx.arc(nowX, my, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = accent; ctx.fill();
+      ctx.beginPath(); ctx.arc(nowX, my, 6.5, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(78,123,238,0.5)'; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+
+    if (reduce) { draw(1.2); return; }
+    var start = performance.now();
+    (function loop(now) {
+      draw((now - start) / 1000);
+      requestAnimationFrame(loop);
+    })(start);
+  })();
+</script>
+
+</body>
+</html>
